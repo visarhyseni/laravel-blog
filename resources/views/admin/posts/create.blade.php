@@ -3,13 +3,15 @@
 
 @section('content')
 
+    @include('admin.includes.errors')
+
     <div class="card">
         <div class="card-header">
             Create a new post
         </div>
 
         <div class="card-body">
-            <form class="" action="/post/store" method="post">
+            <form class="" action="{{ route('post.store') }}" method="post" enctype="multipart/form-data">
                 {{ csrf_field() }}
 
                 <div class="form-group">

@@ -13,12 +13,15 @@
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
 
+
+    </script>
     <!-- Fonts -->
     <link rel="dns-prefetch" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Raleway:300,400,600" rel="stylesheet" type="text/css">
 
     <!-- Styles -->
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="{{ asset('/css/app.css') }}" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
 </head>
 <body>
     <div id="app">
@@ -72,18 +75,24 @@
          <div class="container">
 
              <div class="row">
-
+                 @if(Auth::check())
                  <div class="col-lg-4">
                     <ul class="list-group">
                         <li class="list-group-item">
-                            <a href="/home">Home</a>
+                            <a href="{{ route('home') }}">Home</a>
                         </li>
                         <li class="list-group-item">
-                            <a href="/post/create">Create new Post</a>
+                            <a href="{{ route('categories') }}">Categories</a>
+                        </li>
+                        <li class="list-group-item">
+                            <a href="{{ route('category.create') }}">Create new category</a>
+                        </li>
+                        <li class="list-group-item">
+                            <a href="{{ route('post.create') }}">Create new post</a>
                         </li>
                     </ul>
                  </div>
-
+                @endif
                  <div class="col-lg-8">
                      @yield('content')
                  </div>
@@ -94,6 +103,17 @@
 
 
         </main>
+
+        <script
+  src="https://code.jquery.com/jquery-3.3.1.min.js"
+  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+  crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"> </script>
+        <script>
+            @if(Session::has('success'))
+                toastr.success("{{ Session::get('success') }}")
+            @endif
+        </script>
     </div>
 </body>
 </html>

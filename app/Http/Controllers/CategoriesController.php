@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use Session;
 use Illuminate\Http\Request;
+use App\Category;
 
-class PostController extends Controller
+class CategoriesController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -13,7 +15,7 @@ class PostController extends Controller
      */
     public function index()
     {
-        //
+        return view('admin.categories.index')->with('categories', Category::all());
     }
 
     /**
@@ -23,7 +25,7 @@ class PostController extends Controller
      */
     public function create()
     {
-        return view('admin.posts.create');
+        return view('admin.categories.create');
     }
 
     /**
@@ -36,12 +38,18 @@ class PostController extends Controller
     {
         $this->validate($request, [
 
-            'title' => 'required',
-            'Featured' => 'required|image',
-            'content' => 'required'
+            'name' => 'required'
         ]);
 
-        dd($request->all());
+        $category = new Category;
+
+        $category->name = $request->name;
+        $category->save();
+
+        Session::flash('success', 'Category created');
+
+        return redirect()->back();
+
     }
 
     /**
@@ -63,7 +71,9 @@ class PostController extends Controller
      */
     public function edit($id)
     {
-        //
+        $category = Category::find($id);
+
+        return view('admin.categories.edit')->with('category', $category);
     }
 
     /**
@@ -75,7 +85,19 @@ class PostController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+
+        $category = Category::find($id);
+
+        $category->name = $request->name;
+
+        $category->save();
+
+        Session::flash('success', 'Category updated');
+
+        return redirect()->route('categories');
+
+
+
     }
 
     /**
@@ -86,6 +108,13 @@ class PostController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $category = Category::find($id);
+
+        $category->delete();
+
+        Session::flash('success', 'Category deleted');
+
+        return redirect()->route('categories');
+
     }
 }
