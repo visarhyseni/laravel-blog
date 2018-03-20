@@ -36,11 +36,7 @@
                 </div>
                 <div class="form-group text-center">
                     <button type="submit" class="btn btn-success">Store Post</button>
-                </div>
-                <div>
-                  <h1>test</h1>
-                </div>
-                
+                </div>                
             </form>
         </div>
     </div>
