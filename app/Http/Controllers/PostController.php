@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\PostRequest;
 use Session;
 
 use App\Post;
@@ -48,31 +49,19 @@ class PostController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(PostRequest $request)
     {
-        $this->validate($request, [
-
-            'title' => 'required',
-            'featured' => 'required|image',
-            'category_id' => 'required',
-            'content' => 'required'
-        ]);
-
         $featured = $request->featured;
-
         $featured_new_name = time().$featured->getClientOriginalName();
-
         $featured->move('uploads/posts', $featured_new_name);
 
-        $post = Post::create([
-
-          'title' => $request->title,
-          'content' => $request->content,
-          'featured' => 'uploads/posts/'.$featured_new_name,
-          'category_id'=> $request->category_id,
-          'slug' => str_slug($request->title)
-
-        ]);
+        $post = new Post();
+        $post->title = $request->title;
+        $post->content = $request->content;
+        $post->featured = 'uploads/posts/'.$featured_new_name;
+        $post->category_id = $request->category_id;
+        $post->slug = str_slug($request->title);
+        $post->save();
 
         Session::flash('success', 'Post created :D');
 
@@ -122,6 +111,37 @@ class PostController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $post = Post::find($id);
+        $post->delete();
+
+        Session::flash('success', 'Post moved to trash');
+
+        return redirect()->route('posts');
+    }
+
+    public function trashed(){
+
+        $posts = Post::onlyTrashed()->get();
+
+
+        return view('admin.posts.trashed')->with('posts', $posts);
+    }
+
+    /**
+     * @param $id
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function kill($id){
+
+        $post = Post::withTrashed()->where('id', $id)->first();
+        $post->forceDelete();
+
+//                dd($post);
+
+        Session::flash('success', 'Post Deleted permanently');
+
+        return redirect()->back();
+
+
     }
 }
