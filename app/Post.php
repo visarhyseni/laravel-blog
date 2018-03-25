@@ -22,4 +22,10 @@ class Post extends Model
       return asset($featured);
 
     }
+
+    public function tag(){
+
+        return $this->belongsToMany('App/Tag');
+
+    }
 }
