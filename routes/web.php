@@ -70,6 +70,19 @@ Route::group(['prefix' => 'admin', 'middleware' =>'auth'], function(){
 
     ]);
 
+    Route::get('post/edit/{id}',[
+
+        'uses' => 'PostController@edit',
+        'as' => 'post.edit'
+    ]);
+
+    Route::post('post/update/{id}',[
+
+        'uses' => 'PostController@update',
+        'as' => 'post.update'
+
+    ]);
+
     Route::get('/category/create',[
 
         'uses' => 'CategoriesController@create',
