@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\PostRequest;
+use App\Tag;
 use Session;
 
 use App\Post;
@@ -40,7 +41,9 @@ class PostController extends Controller
           return redirect()->back();
         }
 
-        return view('admin.posts.create')->with('categories', $categories);
+
+        return view('admin.posts.create')->with('categories', $categories)
+                                            ->with('tags', Tag::all());
     }
 
     /**
@@ -51,6 +54,8 @@ class PostController extends Controller
      */
     public function store(PostRequest $request)
     {
+
+
         $featured = $request->featured;
         $featured_new_name = time().$featured->getClientOriginalName();
         $featured->move('uploads/posts', $featured_new_name);
@@ -61,7 +66,10 @@ class PostController extends Controller
         $post->featured = 'uploads/posts/'.$featured_new_name;
         $post->category_id = $request->category_id;
         $post->slug = str_slug($request->title);
+
         $post->save();
+
+        $post->tag()->attach($request->tags);
 
         Session::flash('success', 'Post created :D');
 

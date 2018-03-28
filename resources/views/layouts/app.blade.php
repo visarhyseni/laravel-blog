@@ -13,8 +13,6 @@
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
 
-
-    </script>
     <!-- Fonts -->
     <link rel="dns-prefetch" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Raleway:300,400,600" rel="stylesheet" type="text/css">
@@ -91,10 +89,16 @@
                             <a href="{{ route('categories') }}">Categories</a>
                         </li>
                         <li class="list-group-item">
-                            <a href="{{ route('category.create') }}">Create new category</a>
+                            <a href="{{ route('tags') }}">Tags</a>
                         </li>
                         <li class="list-group-item">
-                            <a href="{{ route('post.create') }}">Create new post</a>
+                            <a href="{{ route('post.create') }}">Create new Post</a>
+                        </li>
+                        <li class="list-group-item">
+                            <a href="{{ route('category.create') }}">Create new Category</a>
+                        </li>
+                        <li class="list-group-item">
+                            <a href="{{ route('tag.create') }}">Create new Tag</a>
                         </li>
                     </ul>
                  </div>
