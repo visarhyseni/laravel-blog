@@ -24,7 +24,7 @@ class UsersTableSeeder extends Seeder
         App\Profile::create([
 
             'user_id' => $user->id,
-            'avatar' => 'uploads/avatars/avatar.jpg',
+            'avatar' => 'uploads\avatars\avatar.jpg',
             'about' => 'Reference site about Lorem Ipsum, giving information on its origins, as well as a random Lipsum ',
             'facebook' => 'facebook.com',
             'youtube' => 'youtube.com'
