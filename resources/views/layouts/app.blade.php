@@ -80,6 +80,9 @@
                             <a href="{{ route('home') }}">Home</a>
                         </li>
                         <li class="list-group-item">
+                            <a href="{{ route('user.profile') }}">My Profile</a>
+                        </li>
+                        <li class="list-group-item">
                             <a href="{{ route('posts') }}">Posts</a>
                         </li>
                         <li class="list-group-item">

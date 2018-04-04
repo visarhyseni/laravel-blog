@@ -39,6 +39,7 @@
                      </div>
                     @endforeach
                 </div>
+
                 <div class="form-group">
                     <label for="title">Content</label>
                     <textarea name="content" id="content" rows="5" cols="5" class="form-control"></textarea>
