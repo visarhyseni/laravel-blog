@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Post;
 use Session;
 use Illuminate\Http\Request;
 use App\Category;
@@ -111,6 +112,12 @@ class CategoriesController extends Controller
     public function destroy($id)
     {
         $category = Category::find($id);
+
+
+        foreach ($category->posts as $post){
+
+            $post->forceDelete();
+        }
 
         $category->delete();
 

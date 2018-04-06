@@ -41,13 +41,22 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="title">Content</label>
-                    <textarea name="content" id="content" rows="5" cols="5" class="form-control"></textarea>
+                    <textarea name="content" id="summernote" rows="5" cols="5" class="form-control"></textarea>
                 </div>
                 <div class="form-group text-center">
                     <button type="submit" class="btn btn-success">Store Post</button>
-                </div>                 
+                </div>
+                <div id="content"></div>
             </form>
         </div>
     </div>
+@stop
+
+@section('styles')
+
+@stop
+
+@section('scripts')
+
+
 @stop

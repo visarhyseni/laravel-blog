@@ -20,6 +20,10 @@
     <!-- Styles -->
     <link href="{{ asset('/css/app.css') }}" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.9/summernote-bs4.css" rel="stylesheet">
+
+
 </head>
 <body>
     <div id="app">
@@ -125,11 +129,14 @@
 
         </main>
 
-        <script
-  src="https://code.jquery.com/jquery-3.3.1.min.js"
-  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
-  crossorigin="anonymous"></script>
+
+        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js"></script>
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.9/summernote-bs4.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"> </script>
+
         <script>
             @if(Session::has('success'))
                 toastr.success("{{ Session::get('success') }}")
@@ -138,6 +145,17 @@
                 toastr.info("{{ Session::get('info') }}")
             @endif
         </script>
+
+        <script>
+            $('#summernote').summernote({
+                placeholder: 'Hello bootstrap 4',
+                tabsize: 2,
+                height: 100
+            });
+        </script>
+
+
+        {{--@yield('scripts')--}}
     </div>
 </body>
 </html>
