@@ -19,9 +19,9 @@
 
     <!-- Styles -->
     <link href="{{ asset('/css/app.css') }}" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.9/summernote-bs4.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
 
 
 </head>
@@ -114,6 +114,9 @@
                             <li class="list-group-item">
                                 <a href="{{ route('user.create') }}">Create new user</a>
                             </li>
+                            <li class="list-group-item">
+                                <a href="{{ route('settings') }}">Settings</a>
+                            </li>
                         @endif
                     </ul>
                  </div>
@@ -148,7 +151,7 @@
 
         <script>
             $('#summernote').summernote({
-                placeholder: 'Hello bootstrap 4',
+                placeholder: 'Post Content',
                 tabsize: 2,
                 height: 100
             });

@@ -40,13 +40,12 @@
                     @endforeach
                 </div>
 
-                <div class="form-group">
-                    <textarea name="content" id="summernote" rows="5" cols="5" class="form-control"></textarea>
+                <div class="form-group" id="summernote">
+                    <textarea name="content" id="content" rows="5" cols="5" class="form-control"></textarea>
                 </div>
                 <div class="form-group text-center">
                     <button type="submit" class="btn btn-success">Store Post</button>
                 </div>
-                <div id="content"></div>
             </form>
         </div>
     </div>

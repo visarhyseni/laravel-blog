@@ -15,9 +15,17 @@
 //    return App\Profile::find(1)->user;
 //});
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/',[
+
+    'uses' => 'FrontEndController@index',
+    'as' => 'index'
+]);
+
+Route::get('/{slug}',[
+
+    'uses' => 'FrontEndController@singlePost',
+    'as' => 'single.post'
+]);
 
 Auth::routes();
 
@@ -225,5 +233,17 @@ Route::group(['prefix' => 'admin', 'middleware' =>'auth'], function(){
 
         'uses' => 'ProfilesController@update',
         'as' => 'user.profile.update'
+    ]);
+
+    Route::get('settings',[
+
+        'uses' => 'SettingsController@index',
+        'as' => 'settings'
+    ]);
+
+    Route::post('settings/update',[
+
+        'uses' => 'SettingsController@update',
+        'as' => 'settings.update'
     ]);
 });
