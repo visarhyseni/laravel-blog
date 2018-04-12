@@ -151,7 +151,7 @@
 
         <script>
             $('#summernote').summernote({
-                placeholder: 'Post Content',
+                placeholder: '',
                 tabsize: 2,
                 height: 100
             });

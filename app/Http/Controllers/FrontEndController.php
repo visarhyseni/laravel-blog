@@ -6,6 +6,7 @@ use App\Category;
 use App\Post;
 use App\Setting;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class FrontEndController extends Controller
 {

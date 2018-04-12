@@ -23,7 +23,7 @@
                 <article class="hentry post post-standard-details">
 
                     <div class="post-thumb">
-                        <img src="app/img/6.jpg" alt="seo">
+                        <img src="{{ asset($post->featured) }}" alt="seo">
                     </div>
 
                     <div class="post__content">
@@ -45,100 +45,27 @@
                                 <i class="seoicon-clock"></i>
 
                                 <time class="published" datetime="2016-03-20 12:00:00">
-                                    March 20, 2016
+                                    {{ $post->created_at->toFormattedDateString() }}
                                 </time>
 
                             </span>
 
                             <span class="category">
                                 <i class="seoicon-tags"></i>
-                                <a href="#">Business,</a>
-                                <a href="#">Seo</a>
+                                <a href="#">{{ $post->category->name }}</a>
                             </span>
 
                         </div>
 
                         <div class="post__content-info">
 
-                            <p class="post__subtitle">Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh
-                                euismod tincidunt ut laoreet dolore.
-                            </p>
-
-                            <p class="post__text">Investigationes demonstraverunt lectores legere me lius quod ii legunt
-                                saepius. Claritas est etiam processus dynamicus, qui sequitur mutationem consuetudium
-                                lectorum. Mirum <span class="c-primary">est notare quam littera gothica</span>, quam nunc putamus parum claram,
-                                anteposuerit litterarum formas humanitatis per seacula quarta decima et quinta decima
-                                eodem modo typii quam nunc putamus parum claram, anteposuerit.
-                            </p>
-
-                            <div class="testimonial-item quote-left">
-
-                                <h5 class="h5 testimonial-text">
-                                    Mirum est notare quam littera gothica, quam nunc putamus parum claram,
-                                    anteposuerit litterarum formas humanitatis placerat facer possim assum.
-                                </h5>
-
-                                <div class="author-info-wrap table">
-                                    <div class="author-info table-cell">
-                                        <h6 class="author-name c-primary">Angelina Johnson</h6>
-                                        <div class="author-company">Envato Market</div>
-                                    </div>
-                                </div>
-
-                                <div class="quote">
-                                    <i class="seoicon-quotes"></i>
-                                </div>
-
-                            </div>
-
-                            <p class="post__text">Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper
-                                suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure
-                                dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu
-                                feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit
-                                praesent luptatum quam nunc putamus parum claram, anteposuerit litterarum formas.
-                            </p>
-
-                            <h4 class="mb30">Qum Soluta Nobis Eleifend</h4>
-
-                            <p class="post__text">Iriure dolor in hendrerit in vulputate velit esse molestie consequat,
-                                vel illum dolore eu feugiat <span class="c-dark">nulla facilisis at vero eros</span>
-                                et accumsan et iusto odio dignissim qui blandit praesent luptatum quam nunc putamus parum claram.
-                            </p>
-
-                            <ul class="list list--secondary">
-                                <li>
-                                    <i class="seoicon-check"></i>
-                                    <a href="#">Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam
-                                        nonummy nibh <span class="c-primary">euismod tincidunt;</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <i class="seoicon-check"></i>
-                                    <a href="#">Mirum est notare quam littera gothica;</a>
-                                </li>
-                                <li>
-                                    <i class="seoicon-check"></i>
-                                    <a href="#">Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse
-                                        molestie consequat, vel illum dolore eu feugiat nulla;
-                                    </a>
-                                </li>
-                                <li>
-                                    <i class="seoicon-check"></i>
-                                    <a href="#">Investigationes demonstraverunt lectores.</a>
-                                </li>
-                            </ul>
-
-                            <p class="post__text">Quis autem vel eum iriure dolor in hendrerit in vulputate velit esse
-                                molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan
-                                et iusto odio dignissim qui blandit praesent quam nunc putamus parum claram.
-                            </p>
+                            {!! $post->content !!}
 
                             <div class="widget w-tags">
                                 <div class="tags-wrap">
-                                    <a href="#" class="w-tags-item">SEO</a>
-                                    <a href="#" class="w-tags-item">Advertising</a>
-                                    <a href="#" class="w-tags-item">Business</a>
-                                    <a href="#" class="w-tags-item">Optimization</a>
+                                    @foreach($post->tag as $tag)
+                                    <a href="#" class="w-tags-item">{{ $tag->tag }}</a>
+                                    @endforeach
                                 </div>
                             </div>
 
