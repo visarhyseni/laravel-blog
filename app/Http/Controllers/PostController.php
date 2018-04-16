@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Comment;
 use App\Http\Requests\PostRequest;
 use App\Tag;
 use Session;
@@ -21,7 +22,8 @@ class PostController extends Controller
      */
     public function index()
     {
-        return view('admin.posts.index')->with('posts', Post::all());
+        return view('admin.posts.index')->with('posts', Post::all())
+                                             ->with('coomments', Comment::all());
     }
 
     /**

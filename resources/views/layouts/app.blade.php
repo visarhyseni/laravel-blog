@@ -107,6 +107,9 @@
                         <li class="list-group-item">
                             <a href="{{ route('tag.create') }}">Create new Tag</a>
                         </li>
+                        <li class="list-group-item">
+                            <a href="{{ route('comments') }}">Comments</a>
+                        </li>
                         @if(Auth::user()->admin)
                             <li class="list-group-item">
                                 <a href="{{ route('users') }}">Users</a>

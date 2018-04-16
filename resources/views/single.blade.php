@@ -52,7 +52,7 @@
 
                             <span class="category">
                                 <i class="seoicon-tags"></i>
-                                <a href="#">{{ $post->category->name }}</a>
+                                <a href="{{ route('category', ['id'=>$post->category->id]) }}">{{ $post->category->name }}</a>
                             </span>
 
                         </div>
@@ -129,27 +129,29 @@
                 </div>
 
                 <div class="pagination-arrow">
+                    @if($next)
+                        <a href="{{ route('single.post', ['slug' => $next->slug]) }}" class="btn-next-wrap">
+                            <div class="btn-content">
+                                <div class="btn-content-title">Next Post</div>
+                                <p class="btn-content-subtitle">{{ $next->title }}</p>
+                            </div>
+                            <svg class="btn-next">
+                                <use xlink:href="#arrow-right"></use>
+                            </svg>
+                        </a>
+                    @endif
 
-                    <a href="#" class="btn-prev-wrap">
-                        <svg class="btn-prev">
-                            <use xlink:href="#arrow-left"></use>
-                        </svg>
-                        <div class="btn-content">
-                            <div class="btn-content-title">Next Post</div>
-                            <p class="btn-content-subtitle">Claritas Est Etiam Processus</p>
-                        </div>
-                    </a>
-
-                    <a href="#" class="btn-next-wrap">
-                        <div class="btn-content">
-                            <div class="btn-content-title">Previous Post</div>
-                            <p class="btn-content-subtitle">Duis Autem Velius</p>
-                        </div>
-                        <svg class="btn-next">
-                            <use xlink:href="#arrow-right"></use>
-                        </svg>
-                    </a>
-
+                    @if($prev)
+                        <a href="{{ route('single.post', ['slug' => $prev->slug]) }}" class="btn-prev-wrap">
+                            <svg class="btn-prev">
+                                    <use xlink:href="#arrow-left"></use>
+                            </svg>
+                            <div class="btn-content">
+                                <div class="btn-content-title">Previous Post</div>
+                                <p class="btn-content-subtitle">{{ $prev->title }}</p>
+                            </div>
+                        </a>
+                    @endif
                 </div>
 
                 <div class="comments">
@@ -164,7 +166,25 @@
                 </div>
 
                 <div class="row">
-
+                    <div class="media">
+                        @foreach($post->comments as $comment)
+                            <div class="media-body">
+                                <h5 class="mt-0">by: {{$comment->user->name}}</h5>
+                                {{ $comment->comment }}
+                            </div>
+                        @endforeach
+                        <div>
+                            @if(Auth::user())
+                                <form action="{{ asset('admin/comments/store') }}" method="post">
+                                    {{csrf_field()}}
+                                    <div class="form-group">
+                                        <input type="hidden" name="post_id" value="{{$post->id}}">
+                                        <input type="textarea" name="comment" class="form-control border" placeholder="comment" >
+                                    </div>
+                                </form>
+                            @endif
+                        </div>
+                    </div>
                 </div>
 
 

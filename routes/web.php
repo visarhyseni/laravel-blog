@@ -27,6 +27,8 @@ Route::get('/post/{slug}',[
     'as' => 'single.post'
 ]);
 
+Route::get('category/{id}', ['uses' => 'FrontEndController@category', 'as'=>'category']);
+
 Auth::routes();
 
 
@@ -245,5 +247,17 @@ Route::group(['prefix' => 'admin', 'middleware' =>'auth'], function(){
 
         'uses' => 'SettingsController@update',
         'as' => 'settings.update'
+    ]);
+
+
+    Route::post('comments/store','CommentsController@store');
+
+
+
+
+    Route::get('comments',[
+
+        'uses' => 'CommentsController@index',
+        'as' => 'comments'
     ]);
 });
