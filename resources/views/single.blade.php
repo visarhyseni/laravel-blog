@@ -35,7 +35,7 @@
                                 Posted by
 
                                 <div class="post__author-name fn">
-                                    <a href="#" class="post__author-link">Admin</a>
+                                    <a href="#" class="post__author-link">{{ $post->user->name }}</a>
                                 </div>
 
                             </div>
@@ -64,7 +64,7 @@
                             <div class="widget w-tags">
                                 <div class="tags-wrap">
                                     @foreach($post->tag as $tag)
-                                    <a href="#" class="w-tags-item">{{ $tag->tag }}</a>
+                                    <a href="{{ route('tag',['id'=>$tag->id]) }}" class="w-tags-item">{{ $tag->tag }}</a>
                                     @endforeach
                                 </div>
                             </div>
@@ -95,33 +95,23 @@
                 <div class="blog-details-author">
 
                     <div class="blog-details-author-thumb">
-                        <img src="app/img/blog-details-author.png" alt="Author">
+                        <img src="{{ asset($post->user->profile->avatar)}}" alt="Author" height="110" width="110">
                     </div>
 
                     <div class="blog-details-author-content">
                         <div class="author-info">
-                            <h5 class="author-name">Philip Demarco</h5>
-                            <p class="author-info">SEO Specialist</p>
+                            <h5 class="author-name">{{ $post->user->name }}</h5>
+                            <p class="author-info">{{ $post->user->email }}</p>
                         </div>
-                        <p class="text">Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam
-                            nonummy nibh euismod.
-                        </p>
+                        <p class="text">{{ $post->user->profile->about }}</p>
                         <div class="socials">
 
-                            <a href="#" class="social__item">
-                                <img src="app/svg/circle-facebook.svg" alt="facebook">
+                            <a href="{{ asset($post->user->profile->facebook) }}" class="social__item">
+                                <img src="{{ asset('app/svg/circle-facebook.svg') }}" alt="facebook">
                             </a>
 
-                            <a href="#" class="social__item">
-                                <img src="app/svg/twitter.svg" alt="twitter">
-                            </a>
-
-                            <a href="#" class="social__item">
-                                <img src="app/svg/google.svg" alt="google">
-                            </a>
-
-                            <a href="#" class="social__item">
-                                <img src="app/svg/youtube.svg" alt="youtube">
+                            <a href="{{ asset($post->user->profile->youtube) }}" class="social__item">
+                                <img src="{{ asset('app/svg/youtube.svg')}}" alt="youtube">
                             </a>
 
                         </div>
@@ -206,15 +196,9 @@
                         </div>
 
                         <div class="tags-wrap">
-                            <a href="#" class="w-tags-item">SEO</a>
-                            <a href="#" class="w-tags-item">Advertising</a>
-                            <a href="#" class="w-tags-item">Business</a>
-                            <a href="#" class="w-tags-item">Optimization</a>
-                            <a href="#" class="w-tags-item">Digital Marketing</a>
-                            <a href="#" class="w-tags-item">Social</a>
-                            <a href="#" class="w-tags-item">Keyword</a>
-                            <a href="#" class="w-tags-item">Strategy</a>
-                            <a href="#" class="w-tags-item">Audience</a>
+                            @foreach($all_tags as $tag)
+                                <a href="{{ route('tag', ['id'=>$tag->id]) }}" class="w-tags-item">{{ $tag->tag }}</a>
+                            @endforeach
                         </div>
                     </div>
                 </aside>

@@ -15,19 +15,15 @@
 //    return App\Profile::find(1)->user;
 //});
 
-Route::get('/',[
+Route::get('/',['uses' => 'FrontEndController@index', 'as' => 'index']);
 
-    'uses' => 'FrontEndController@index',
-    'as' => 'index'
-]);
-
-Route::get('/post/{slug}',[
-
-    'uses' => 'FrontEndController@singlePost',
-    'as' => 'single.post'
-]);
+Route::get('/post/{slug}',['uses' => 'FrontEndController@singlePost', 'as' => 'single.post']);
 
 Route::get('category/{id}', ['uses' => 'FrontEndController@category', 'as'=>'category']);
+
+Route::get('tag/{id}', ['uses' => 'FrontEndController@tags', 'as'=>'tag']);
+
+Route::get('/results', [ 'uses'=>'FrontEndController@results', 'as'=>'results' ]);
 
 Auth::routes();
 
