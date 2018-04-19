@@ -25,6 +25,8 @@ Route::get('tag/{id}', ['uses' => 'FrontEndController@tags', 'as'=>'tag']);
 
 Route::get('/results', [ 'uses'=>'FrontEndController@results', 'as'=>'results' ]);
 
+Route::post('/subscribe', [ 'uses'=>'FrontEndController@subscribe', 'as'=>'subscribe' ]);
+
 Auth::routes();
 
 

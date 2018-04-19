@@ -10,6 +10,7 @@ use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Tag;
+use Newsletter;
 
 class FrontEndController extends Controller
 {
@@ -79,5 +80,13 @@ class FrontEndController extends Controller
                                    ->with('settings', Setting::first())
                                    ->with('all_tags', Tag::all())
                                    ->with('query', request('query')) ;
+    }
+
+    public function subscribe(){
+
+          $email = request('semail');
+        Newsletter::subscribe($email);
+
+        return redirect()->back();
     }
 }

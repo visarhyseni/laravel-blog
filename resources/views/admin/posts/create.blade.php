@@ -40,8 +40,8 @@
                     @endforeach
                 </div>
 
-                <div class="form-group" id="content">
-                    <textarea name="content" id="summernote" rows="5" cols="5" class="form-control"></textarea>
+                <div class="form-group">
+                    <textarea name="content" id="content" rows="5" cols="5" class="form-control"></textarea>
                 </div>
 
                 <div class="form-group text-center">
